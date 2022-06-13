@@ -15,7 +15,7 @@ const buildPath = path.join(__dirname, '/build');
 app.use(express.static(buildPath));
 
 
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: 'http://localhost:8000' }));
 app.options('*', cors());
 // app.use(function (req, res, next) {
 //     res.setHeader('Access-Control-Allow-Origin', '*');
