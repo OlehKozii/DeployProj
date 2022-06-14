@@ -1,6 +1,6 @@
 const cloudinary = require("../service/cloudinaryConfig")
 const { upload } = require("../service/multer")
-const { goods, params } = require("../models/goodsModel")
+const { goods, params, type } = require("../models/goodsModel")
 const err = require("../errors/err")
 const { v4 } = require("uuid")
 const { badRequest } = require("../errors/err")
@@ -49,6 +49,19 @@ class deviceController {
             console.log(e)
             next(err.badRequest(e.message))
         }
+    }
+
+    async addType(req, res) {
+        const { typeName } = req.body;
+        
+        const newType = await type.create({
+            id:  v4().toString(),
+            name: typeName,
+            good: []
+        });
+        await newType.save();
+        res.send(newType);
+
     }
 
     async deleteProduct(req, res) {
@@ -113,8 +126,7 @@ class deviceController {
     }
 
     async edit(req, res, next) {
-        console.log(req.body);
-        const {name, price} = req.body;
+        const {name, price, typeID, state, info} = req.body;
         const goodId = req.params.id;
 
         if (!goodId) {
@@ -129,6 +141,8 @@ class deviceController {
         // product = {...product, name, price, typeID, state};
         product.name = name;
         product.price = price;
+        product.typeID = typeID;
+        product.state = state;
         product.save()
 
         res.send('');
