@@ -5,7 +5,8 @@ const goodsSchema = new Schema({
     name: { type: String, required: true },
     typeID: { type: String, required: true },
     price: { type: Number, required: true, min: 1 },
-    discount: { type: Number, min: 0 },
+    isDiscount: { type: Boolean, required: true, default: false },
+    priceWithDiscount: { type: Number, min: 0 },
     comments: [{
         name: { type: String },
         text: { type: String },
@@ -55,7 +56,7 @@ const orderSchema = new Schema({
         count: { type: Number, required: true }
     }],
     time: { type: Date, default: Date.now },
-    state: { type: String, enum: ["В обробці", "Відправлено", "Очікує отримання", "Скасовано"], default: "В обробці" }
+    state: { type: String, enum: ["В обробці", "Очікує отримання", "Скасовано"], default: "В обробці" }
 })
 
 

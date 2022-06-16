@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/120.b9b851a6.chunk.css","mappings":"AAAA,qBAIE,mBAHA,aACA,0BACA,sBACA","sources":["pages/auth/Auth.module.scss"],"sourcesContent":["#wrapper {\r\n  display: flex;\r\n  height: calc(100vh - 76px);\r\n  justify-content: center;\r\n  align-items: center;\r\n}"],"names":[],"sourceRoot":""}
